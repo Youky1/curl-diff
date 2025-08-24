@@ -1,5 +1,5 @@
 import { parseCurl, ParsedCurl } from '../parseCurl';
-import { compareCurls, CompareResult } from '../index';
+import { curlDiff, CompareResult } from '../index';
 
 describe('parseCurl', () => {
 
@@ -35,14 +35,14 @@ describe('parseCurl', () => {
 
 });
 
-describe('compareCurls', () => {
+describe('curlDiff', () => {
 
   test('比较相同 curl，返回 same=true', () => {
   const curl1 = `curl -X POST "https://example.com/api?a=1&b=2" -H "Content-Type: application/json" -d '{"name":"Alice","age":25}'`;
   const curl2 = `curl -X POST "https://example.com/api?b=2&a=1" -H "Content-Type: application/json" -d '{"age":25,"name":"Alice"}'`;
   const result1 = parseCurl(curl1);
   const result2 = parseCurl(curl2);
-  const result = compareCurls([curl1, curl2]);
+  const result = curlDiff([curl1, curl2]);
 
   expect(result?.method.same).toBe(true);
   expect(result?.url.same).toBe(true);
@@ -56,7 +56,7 @@ describe('compareCurls', () => {
   const curl2 = `curl -X POST "https://example.com/api" -d "x=3&y=4"`;
   const result1 = parseCurl(curl1);
   const result2 = parseCurl(curl2);
-  const result = compareCurls([curl1, curl2]);
+  const result = curlDiff([curl1, curl2]);
 
   expect(result?.body.same).toBe(false);
   expect(result?.body.values).toEqual([{ x: '1', y: '2' }, { x: '3', y: '4' }]);
@@ -67,7 +67,7 @@ describe('compareCurls', () => {
   const curl2 = `curl -H "B: 2" -H "A: 1" "https://example.com/api"`;
   const result1 = parseCurl(curl1);
   const result2 = parseCurl(curl2);
-  const result = compareCurls([curl1, curl2]);
+  const result = curlDiff([curl1, curl2]);
 
   expect(result?.header.same).toBe(true);
   expect(result?.header.value).toEqual({ A: '1', B: '2' });

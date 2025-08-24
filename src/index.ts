@@ -10,7 +10,7 @@ export type CompareResult = Record<
   }
 >;
 
-export function compareCurls(curlList: string[]): CompareResult {
+export function curlDiff(curlList: string[]): CompareResult {
   if (!curlList || curlList.length === 0) {
     return {
       method: null,

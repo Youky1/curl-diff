@@ -1,22 +1,24 @@
 {
-  "name": "curl-diff",
-  "version": "1.0.0",
-  "description": "Used to compare the similarities and differences of curl",
-  "main": "index.js",
+  "name": "curl-toolkit",
+  "version": "0.0.1",
+  "description": "Handle curl related operations in JS",
+  "main": "dist/index.js",
+  "files": ["dist"],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Youky1/curl-diff.git"
+    "url": "git+https://github.com/Youky1/curl-toolkit.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Youky1/curl-diff/issues"
+    "url": "https://github.com/Youky1/curl-toolkit/issues"
   },
-  "homepage": "https://github.com/Youky1/curl-diff#readme",
+  "homepage": "https://github.com/Youky1/curl-toolkit#readme",
   "dependencies": {
     "lodash": "^4.17.21",
     "parse-curl": "^0.2.6",
